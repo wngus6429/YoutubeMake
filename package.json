@@ -1,0 +1,19 @@
+{
+  "name": "youtubemake",
+  "version": "1.0.0",
+  "description": "Cloning Youtube with vanillaJS and NodeJS",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wngus6429/YoutubeMake.git"
+  },
+  "author": "ParkJuhyun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wngus6429/YoutubeMake/issues"
+  },
+  "homepage": "https://github.com/wngus6429/YoutubeMake#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
