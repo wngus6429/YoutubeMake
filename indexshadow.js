@@ -1,9 +1,5 @@
 //const express = require("express");
 import express from "express";
-import morgan from "morgan";
-import helmet from "helmet";
-import cookeParser from "cookie-parser";
-import bodyParser from "body-parser";
 const app = express();
 
 const PORT = 4000;
@@ -16,17 +12,13 @@ const handleHome = (req, res) => res.send("Hello from home asshole gg!");
 const handleProfile = (req, res) => res.send("you are on my profile");
 //이걸 arrow function이라고 한다.
 
-app.use(cookeParser());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(helmet());
-app.use(morgan("dev"));
-
-const middleware = (req, res, next) => {
-  res.send("not happening");
+const betweenHome = (req, res, next) => {
+  console.log("I'm bettwen");
+  next();
 };
+app.use(betweenHome);
 
-app.get("/", middleware, handleHome);
+app.get("/", handleHome);
 
 app.get("/profile", handleProfile);
 
