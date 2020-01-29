@@ -2,7 +2,6 @@
   "name": "youtubemake",
   "version": "1.0.0",
   "description": "Cloning Youtube with vanillaJS and NodeJS",
-  "main": "index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/wngus6429/YoutubeMake.git"
