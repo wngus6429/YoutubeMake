@@ -8,9 +8,9 @@ import {
 
 const userRouter = express.Router();
 
-userRouter.get(routes.userDetail, userDetail);
 userRouter.get(routes.editProfile, editProfile);
 userRouter.get(routes.changePassword, changePassword);
+userRouter.get(routes.userDetail, userDetail);
 
 export default userRouter;
 // MVC라는 것은 Model, View, Control을 의미한다.
