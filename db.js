@@ -4,7 +4,8 @@ export const videos = [
     title: "video awesome",
     description: "this is something i love",
     views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
+    videoFile:
+      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
     creator: {
       //이건 사용자임
       jid: 121212,
@@ -17,7 +18,8 @@ export const videos = [
     title: "video super",
     description: "this is something i love",
     views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
+    videoFile:
+      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
     creator: {
       //이건 사용자임
       jid: 121212,
@@ -30,7 +32,8 @@ export const videos = [
     title: "video good",
     description: "this is something i love",
     views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
+    videoFile:
+      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
     creator: {
       //이건 사용자임
       jid: 121212,
@@ -43,7 +46,8 @@ export const videos = [
     title: "video perfect",
     description: "this is something i love",
     views: 24,
-    videoFile: "https://archive.org/details/BigBuckBunny_124",
+    videoFile:
+      "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
     creator: {
       //이건 사용자임
       jid: 121212,

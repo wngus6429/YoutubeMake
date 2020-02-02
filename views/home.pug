@@ -1,11 +1,22 @@
 extends layouts/main.pug
+include mixins/videoBlock
 
 block content
     .videos
-        each video in videos
-            h1=video.title
-            p=video.description
+        each item in videos
+            +videoBlock({
+                title:item.title,
+                views:item.views,
+                videoFile:item.videoFile  
+            })
+
 
 
 //- pug는 html을 이쁘게 만들어준다.
 //- html에서는 <h4>Hello</h4> 했지만 pug는 앞에 p로 끝임
+
+//- block content
+//-     .videos
+//-         each video in videos
+//-             h1=video.title
+//-             p=video.description

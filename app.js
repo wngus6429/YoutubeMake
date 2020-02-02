@@ -13,7 +13,7 @@ const app = express();
 
 app.use(helmet()); //보안 증가
 app.set("view engine", "pug");
-app.use(cookieParser()); //쿠키 저장기능
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
