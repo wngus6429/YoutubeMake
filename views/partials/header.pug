@@ -1,4 +1,3 @@
-  
 header.header
     .header__wrapper
         .header__column
@@ -9,10 +8,17 @@ header.header
                 input(type="text", placeholder="Search by term...", name="term")
     .header__column
         ul
-            li
-                a(href=routes.join) Join
-            li
-                a(href=routes.login) Log In
-
+            if !user.isAuthenticated
+                li
+                    a(href=routes.join) Join
+                li
+                    a(href=routes.login) Log In
+            else 
+                li
+                    a(href=`/videos${routes.upload}`) Upload
+                li
+                    a(href=routes.userDetail(user.id)) Profile
+                li
+                    a(href=routes.logout) Log Out
 
 //- 안에 2개의 열(컬럼)을 추가 할 것임. 왼쪽 열과 오른쪽 열
