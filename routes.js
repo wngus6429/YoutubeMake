@@ -15,9 +15,11 @@ const CHANGE_PASSWORD = "/change-password";
 //videos
 const VIDEOS = "/videos";
 const UPLOAD = "/upload";
+//http://localhost:4000/videos/upload
 const VIDEO_DETAIL = "/:id";
+//http://localhost:4000/videos/5e34
 const EDIT_VIDEO = "/:id/edit";
-//videos/1/edit
+//http://localhost:4000/videos/5e34/edit
 const DELETE_VIDEO = "/:id/delete";
 
 const routes = {

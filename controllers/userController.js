@@ -18,8 +18,7 @@ export const postJoin = (req, res) => {
   }
 };
 
-export const getLogin = (req, res) =>
-  res.render("login", { pageTitle: "Log In" });
+export const getLogin = (req, res) => res.render("login", { pageTitle: "Log In" });
 export const postLogin = (req, res) => {
   res.redirect(routes.home);
 };
@@ -29,10 +28,8 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const userDetail = (req, res) =>
-  res.render("userDetail", { pageTitle: "User Detail" });
-export const editProfile = (req, res) =>
-  res.render("editProfile", { pageTitle: "Edit Profile" });
+export const userDetail = (req, res) => res.render("userDetail", { pageTitle: "User Detail" });
+export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "Edit Profile" });
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
 //사실 뒤에서 return 암묵적으로 행하는중
@@ -41,3 +38,5 @@ export const changePassword = (req, res) =>
 // }
 
 // alal = () => true;
+
+//컨트롤러는 어떤 일이 어떻게 발생하는지에 관한 로직임
