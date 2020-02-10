@@ -9,6 +9,7 @@ export const home = async (req, res) => {
   } catch (error) {
     console.log(error);
     res.render("home", { pageTitle: "Home", videos: [] });
+    //첫번쨰는 템플릿 pug 이고 뒤에는 추가할 내용 객체를 적은거임 main보면 암
   }
 };
 export const search = async (req, res) => {
@@ -28,8 +29,7 @@ export const search = async (req, res) => {
   // res.render("search", { pageTitle: "Search", searchingBy:searchingBy });
 };
 
-export const getUpload = (req, res) =>
-  res.render("upload", { pageTitle: "Upload" });
+export const getUpload = (req, res) => res.render("upload", { pageTitle: "Upload" });
 
 export const postUpload = async (req, res) => {
   const {
