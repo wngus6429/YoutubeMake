@@ -3,11 +3,10 @@ mixin videoBlock(video = {})
         a(href=routes.videoDetail(video.id))
             video.videoBlock__thumbnail(src=video.videoFile, controls=true)
             h4.videoBlock__title=video.title
-            h6.videoBlock__views=video.views 
+            h6.videoBlock__views=video.views
 
 
 //- mixin videoBlock(item = {})
 //-     h1=item.title
 //-     p=item.description
-
 //- videoBlock__thumbnail 라는 태그가 존재함.
