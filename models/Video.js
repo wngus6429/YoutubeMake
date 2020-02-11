@@ -28,3 +28,5 @@ const VideoSchema = new mongoose.Schema({
 
 const model = mongoose.model("Video", VideoSchema);
 export default model;
+
+//createdAt은 현재의 날짜를 반환하는 기능
