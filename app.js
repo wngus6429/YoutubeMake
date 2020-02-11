@@ -8,11 +8,13 @@ import routes from "./routes"; //라우트 정보 내놔
 import userRouter from "./routers/userRouter"; //유저라우터 정보 내놔
 import videoRouter from "./routers/videoRouter"; //비디오라우터 정보 내놔
 import globalRouter from "./routers/globalRouter"; //글로벌 라우터 정보 내놔
+
 const app = express(); //const는 ES6의 새로운 기능이다.
 
 app.use(helmet()); //보안 증가
 app.set("view engine", "pug"); //HTML 편하게 작성하게 도와주는 pug
 app.use("/uploads", express.static("uploads"));
+app.use("/static", express.static("static"));
 app.use(cookieParser()); //쿠키 저장기능
 app.use(bodyParser.json()); //// 사용자가 웹사이트로 전달하는 정보들을 검사하는 미들웨어
 //request정보에서 form이나 json 형태로된 body를 검사함
