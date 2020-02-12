@@ -1,0 +1,28 @@
+.social-login {
+  display: flex; //왼쪽으로 쏠린 칸2개
+  flex-direction: column; //없으면 같은줄로 왼쪽
+  align-items: center; //칸 2개 가운데 정렬
+  width: 100%;
+  button {
+    width: 100%;
+    max-width: 320px;
+    display: flex; //글씨가 위아래 중간정렬
+    justify-content: center; //없으면 글씨 왼쪽
+    align-items: center;
+    &:not(:last-child) {
+      margin-bottom: 3px; //위아래 칸 넓이
+    }
+    span {
+      margin-right: 10px; //아이콘과 글씨 거리
+      font-size: 20px; //아이콘 크기
+    }
+  }
+  .social-login--github {
+    width: 100%;
+    background-color: red;
+  }
+  .social-login--facebook {
+    width: 100%;
+    background-color: red;
+  }
+}

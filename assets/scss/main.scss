@@ -16,3 +16,28 @@ main {
   margin: 0 auto;
   min-height: 70vh;
 }
+
+button,
+input {
+  width: 100%;
+  border: none;
+  max-width: 320px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: $black;
+  font-weight: 600;
+  &::placeholder {
+    font-weight: 300;
+    color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+button {
+  border: none;
+  background-color: red;
+  color: white;
+}
+
+input[text="submit"] {
+  cursor: pointer;
+}
