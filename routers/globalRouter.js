@@ -18,7 +18,8 @@ globalRouter.post(routes.join, postJoin); //아이디 만듬 정보 가림
 globalRouter.get(routes.login, getLogin); //로그인 함
 globalRouter.post(routes.login, postLogin); //로그인 정보 가림
 
-globalRouter.get(routes.home, home);
+globalRouter.get(routes.home, home); // routes.home링크로 home을 보냄.
+//home을 video컨트롤러에서 가져옴
 globalRouter.get(routes.search, search);
 
 globalRouter.get(routes.logout, logout);

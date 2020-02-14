@@ -8,3 +8,7 @@ block content
             input(type="submit", value="Update Video")
         a.form-container__link.form-container__link--delete(href=routes.deleteVideo(video.id)) 
             button Delete Video 
+
+//- routes.editVideo를 누르면 routers 폴더에 있는 videoRouter에 가서 전자에서
+//- routers폴더의 각종 router.js들은 export를 하고 있기 때문에 접근 가능
+//- routes.js에 들어가서 주소를 따오고(req,) 그 다음 반응으로 videoController에 가서 계산.
