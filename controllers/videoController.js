@@ -29,8 +29,7 @@ export const search = async (req, res) => {
   // res.render("search", { pageTitle: "Search", searchingBy:searchingBy });
 };
 
-export const getUpload = (req, res) =>
-  res.render("upload", { pageTitle: "Upload" });
+export const getUpload = (req, res) => res.render("upload", { pageTitle: "Upload" });
 
 export const postUpload = async (req, res) => {
   const {
@@ -44,8 +43,7 @@ export const postUpload = async (req, res) => {
   });
   console.log(newVideo);
   res.redirect(routes.videoDetail(newVideo.id));
-  //
-  res.render("upload", { pageTitle: "Upload" });
+  //res.render("upload", { pageTitle: "Upload" });
   // To do : 비디오 업로드 및 저장
   //res.redirect(routes.videoDetail(123)); //db.js의 영상 id를 가져옴
 };
@@ -100,3 +98,5 @@ export const deleteVideo = async (req, res) => {
 
 // 여기가 MVC에서 C부분임
 //pageTitle 이건 말 그대로 페이지 타이틀임
+//redirect는 사용자를 어디 홈페이지로 보내는 역할
+//res.render("home")은 home.pug를 렌더링한다.

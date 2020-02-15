@@ -1,13 +1,7 @@
 import express from "express";
 import routes from "../routes";
 import { home, search } from "../controllers/videoController";
-import {
-  getJoin,
-  getLogin,
-  postJoin,
-  postLogin,
-  logout
-} from "../controllers/userController";
+import { getJoin, getLogin, postJoin, postLogin, logout } from "../controllers/userController";
 //현재 폴더의 바깥으로 지정해야 해서 .. 두개 붙임.
 
 const globalRouter = express.Router();
@@ -25,3 +19,6 @@ globalRouter.get(routes.search, search);
 globalRouter.get(routes.logout, logout);
 
 export default globalRouter;
+
+//get을 쓰는것은 URL 창에 보이고 render 하기 위한 용도이며
+//post를 쓰는것은 URL 창에 안보이는 다른 작업들 (패스워드, reqbody 등등) 하기 위해.
