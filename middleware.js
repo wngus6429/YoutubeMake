@@ -14,8 +14,14 @@ export const localsMiddleware = (req, res, next) => {
 };
 
 export const uploadVideo = multerVideo.single("videoFile");
+//single은 파일 한개만을 올릴수 있다는것임.
 
 //Connect 미들웨어를 이용해서 isAuthenticated 메서드를 호출하여
 //로그인 판단 여부를 확인할 수 있습니다.
 //로그인한 유저는 isAuthenticated는 true를 반환해서
 //next()를 호출해서 다음 작업을 진행하게 됨
+
+//multer는
+//var upload = multer({ dest: 'uploads/' })
+// 입력한 파일이 uploads/ 폴더 내에 저장된다.
+// multer라는 모듈이 함수라서 함수에 옵션을 줘서 실행을 시키면, 해당 함수는 미들웨어를 리턴한다.
