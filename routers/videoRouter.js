@@ -24,8 +24,11 @@ videoRouter.get(routes.editVideo(), getEditVideo);
 videoRouter.post(routes.editVideo(), postEditVideo);
 //delete video
 videoRouter.get(routes.deleteVideo(), deleteVideo);
+//deleteVideo는 string을 return하는 function 이다.
 
 export default videoRouter;
+
+//routes.뭐시기()는 더 이상 string이 아니라 사실상 funtion 이라고 보면됨.
 
 // MVC라는 것은 Model, View, Control을 의미한다.
 // Model은 데이터임

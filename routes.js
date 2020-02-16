@@ -8,7 +8,6 @@ const SEARCH = "/search";
 //Users
 const USERS = "/users";
 const USER_DETAIL = "/:id";
-//위에 두개를 합하면 /users/1 이 되는거임. 나에게 1번 user를 주는거임
 const EDIT_PROFILE = "/edit-profile";
 const CHANGE_PASSWORD = "/change-password";
 

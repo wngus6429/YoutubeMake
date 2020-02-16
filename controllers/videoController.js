@@ -29,7 +29,8 @@ export const search = async (req, res) => {
   // res.render("search", { pageTitle: "Search", searchingBy:searchingBy });
 };
 
-export const getUpload = (req, res) => res.render("upload", { pageTitle: "Upload" });
+export const getUpload = (req, res) =>
+  res.render("upload", { pageTitle: "Upload" });
 
 export const postUpload = async (req, res) => {
   const {
@@ -54,6 +55,7 @@ export const videoDetail = async (req, res) => {
   try {
     const video = await Video.findById(id);
     res.render("videoDetail", { pageTitle: video.title, video });
+    //video:video 는 video 와 같다.
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -94,9 +96,12 @@ export const deleteVideo = async (req, res) => {
     console.log(error);
   }
   res.redirect(routes.home);
+  //비디오 삭제가 되던, 안되던 무조건 home으로 간다.
 };
 
 // 여기가 MVC에서 C부분임
 //pageTitle 이건 말 그대로 페이지 타이틀임
 //redirect는 사용자를 어디 홈페이지로 보내는 역할
 //res.render("home")은 home.pug를 렌더링한다.
+//getEditVideo는 템플릿을 랜더링 하는거임
+//get은 뭔가를 채워넣는 작업이고, post는 업데이트하고 redirect하는 작업임
