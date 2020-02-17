@@ -3,11 +3,14 @@ import morgan from "morgan"; //무슨 일이 어디서 일어났는지 기록하
 import helmet from "helmet"; // 노드js 보안에 도움이 되는 것임.
 import cookieParser from "cookie-parser"; //쿠키 저장기능 (익스프레스 미들웨어)
 import bodyParser from "body-parser"; // 사용자가 웹사이트로 전달하는 정보들을 검사하는 미들웨어
+import passport from "passport";
 import { localsMiddleware } from "./middleware"; //미들웨어 정보 내놔
 import routes from "./routes"; //라우트 정보 내놔
 import userRouter from "./routers/userRouter"; //유저라우터 정보 내놔
 import videoRouter from "./routers/videoRouter"; //비디오라우터 정보 내놔
 import globalRouter from "./routers/globalRouter"; //글로벌 라우터 정보 내놔
+
+import "./passport";
 
 const app = express(); //const는 ES6의 새로운 기능이다.
 
@@ -20,6 +23,8 @@ app.use(bodyParser.json()); //// 사용자가 웹사이트로 전달하는 정�
 //request정보에서 form이나 json 형태로된 body를 검사함
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev")); //컬러 들어감 ^.^
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(localsMiddleware);
 

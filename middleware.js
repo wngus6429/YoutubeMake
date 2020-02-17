@@ -6,10 +6,7 @@ const multerVideo = multer({ dest: "uploads/videos/" });
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "ParkTube"; //main에 있는 siteName
   res.locals.routes = routes; //routes.js 사용
-  res.locals.user = {
-    isAuthenticated: true,
-    id: 1
-  };
+  res.locals.user = req.user || {};
   next();
 };
 
