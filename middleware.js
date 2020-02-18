@@ -1,14 +1,32 @@
 import multer from "multer";
 import routes from "./routes";
 
-const multerVideo = multer({ dest: "uploads/videos/" });
+const multerVideo = multer({ dest: "unploads/videos/" });
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "ParkTube"; //main에 있는 siteName
   res.locals.routes = routes; //routes.js 사용
-  res.locals.user = req.user || {};
+  res.locals.user = req.user || null;
   next();
 };
+
+export const onlyPublic = (req, res, next) => {
+  if (req.user) {
+    res.redirect(routes.home);
+  } else {
+    next();
+  }
+};
+//로그인한 사용자가 가입화면(join)에 못 가게 하기 위해
+
+export const onlyPrivate = (req, res, next) => {
+  if ((req, user)) {
+    next();
+  } else {
+    res.redirect(routes.home);
+  }
+};
+//사용자가 로그인한 상태라면 next를 해줌, 그렇지 않으면 home으로
 
 export const uploadVideo = multerVideo.single("videoFile");
 //single은 파일 한개만을 올릴수 있다는것임.

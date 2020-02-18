@@ -8,22 +8,22 @@ import {
   postEditVideo,
   deleteVideo
 } from "../controllers/videoController";
-import { uploadVideo } from "../middleware";
+import { uploadVideo, onlyPrivate } from "../middleware";
 
 const videoRouter = express.Router();
 
 console.log(routes.editVideo);
 
 //upload
-videoRouter.get(routes.upload, getUpload);
-videoRouter.post(routes.upload, uploadVideo, postUpload); //가운데가 미들웨어
+videoRouter.get(routes.upload, onlyPrivate, getUpload);
+videoRouter.post(routes.upload, onlyPrivate, uploadVideo, postUpload); //가운데가 미들웨어
 //video detail
 videoRouter.get(routes.videoDetail(), videoDetail);
 //edit video
-videoRouter.get(routes.editVideo(), getEditVideo);
-videoRouter.post(routes.editVideo(), postEditVideo);
+videoRouter.get(routes.editVideo(), onlyPrivate, getEditVideo);
+videoRouter.post(routes.editVideo(), onlyPrivate, postEditVideo);
 //delete video
-videoRouter.get(routes.deleteVideo(), deleteVideo);
+videoRouter.get(routes.deleteVideo(), onlyPrivate, deleteVideo);
 //deleteVideo는 string을 return하는 function 이다.
 
 export default videoRouter;

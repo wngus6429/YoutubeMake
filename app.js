@@ -4,6 +4,9 @@ import helmet from "helmet"; // 노드js 보안에 도움이 되는 것임.
 import cookieParser from "cookie-parser"; //쿠키 저장기능 (익스프레스 미들웨어)
 import bodyParser from "body-parser"; // 사용자가 웹사이트로 전달하는 정보들을 검사하는 미들웨어
 import passport from "passport";
+import mongoose from "mongoose";
+import session from "express-session";
+import MongoStore from "connect-mongo";
 import { localsMiddleware } from "./middleware"; //미들웨어 정보 내놔
 import routes from "./routes"; //라우트 정보 내놔
 import userRouter from "./routers/userRouter"; //유저라우터 정보 내놔
@@ -14,6 +17,8 @@ import "./passport";
 
 const app = express(); //const는 ES6의 새로운 기능이다.
 
+const CokieStore = MongoStore(session);
+
 app.use(helmet()); //보안 증가
 app.set("view engine", "pug"); //HTML 편하게 작성하게 도와주는 pug
 app.use("/uploads", express.static("uploads"));
@@ -23,6 +28,14 @@ app.use(bodyParser.json()); //// 사용자가 웹사이트로 전달하는 정�
 //request정보에서 form이나 json 형태로된 body를 검사함
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev")); //컬러 들어감 ^.^
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new CokieStore({ mongooseConnection: mongoose.connection })
+  })
+);
 app.use(passport.initialize());
 app.use(passport.session());
 

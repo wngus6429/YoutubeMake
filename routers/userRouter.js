@@ -1,12 +1,17 @@
 import express from "express";
 import routes from "../routes";
-import { userDetail, editProfile, changePassword } from "../controllers/userController";
+import {
+  userDetail,
+  editProfile,
+  changePassword
+} from "../controllers/userController";
+import { onlyPrivate } from "../middleware";
 //라우트와 컨트롤러를 가져와서 사용한다
 
 const userRouter = express.Router();
 
-userRouter.get(routes.editProfile, editProfile);
-userRouter.get(routes.changePassword, changePassword);
+userRouter.get(routes.editProfile, onlyPrivate, editProfile);
+userRouter.get(routes.changePassword, onlyPrivate, changePassword);
 userRouter.get(routes.userDetail(), userDetail);
 
 export default userRouter; //파일로 export 한다는 이야기.
