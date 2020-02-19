@@ -1,4 +1,5 @@
 import express from "express";
+import passport from "passport";
 import routes from "../routes";
 import { home, search } from "../controllers/videoController";
 import {
@@ -6,9 +7,11 @@ import {
   getLogin,
   postJoin,
   postLogin,
-  logout
+  logout,
+  githubLogin,
+  postGithubLogIn
 } from "../controllers/userController";
-import { onlyPublic } from "../middleware";
+import { onlyPublic, onlyPrivate } from "../middleware";
 //현재 폴더의 바깥으로 지정해야 해서 .. 두개 붙임.
 
 const globalRouter = express.Router();
@@ -23,8 +26,17 @@ globalRouter.post(routes.login, onlyPublic, postLogin); //로그인 정보 가�
 globalRouter.get(routes.home, home); // routes.home링크로 home을 보냄.
 //home을 video컨트롤러에서 가져옴
 globalRouter.get(routes.search, search);
+globalRouter.get(routes.logout, onlyPrivate, logout);
 
-globalRouter.get(routes.logout, onlyPublic, logout);
+globalRouter.get(routes.github, githubLogin);
+globalRouter.get(
+  routes.githubCallback,
+  passport.authenticate(
+    "github",
+    { failureRedirect: "/login" },
+    postGithubLogIn
+  )
+);
 
 export default globalRouter;
 
