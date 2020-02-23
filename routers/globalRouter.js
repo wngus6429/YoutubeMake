@@ -10,7 +10,9 @@ import {
   logout,
   githubLogin,
   postGithubLogIn,
-  getMe
+  getMe,
+  facebookLogin,
+  postFacebookLogin
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middleware";
 //현재 폴더의 바깥으로 지정해야 해서 .. 두개 붙임.
@@ -37,6 +39,13 @@ globalRouter.get(
 );
 
 globalRouter.get(routes.me, getMe);
+
+// globalRouter.get(routes.facebook, facebookLogin);
+// globalRouter.get(
+//   routes.facebookCallback,
+//   passport.authenticate("facebook", { failureRedirect: "/login" }),
+//   postFacebookLogin
+// );
 
 export default globalRouter;
 
