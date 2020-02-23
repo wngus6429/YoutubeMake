@@ -30,8 +30,7 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
-export const getLogin = (req, res) =>
-  res.render("login", { pageTitle: "Log In" });
+export const getLogin = (req, res) => res.render("login", { pageTitle: "Log In" });
 
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
@@ -89,8 +88,7 @@ export const userDetail = async (req, res) => {
   }
 };
 
-export const getEditProfile = (req, res) =>
-  res.render("editProfile", { pageTitle: "Edit Profile" });
+export const editProfile = (req, res) => res.render("editProfile", { pageTitle: "Edit Profile" });
 export const changePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
 //사실 뒤에서 return 암묵적으로 행하는중
