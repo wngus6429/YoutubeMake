@@ -6,7 +6,7 @@ const multerVideo = multer({ dest: "unploads/videos/" });
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "ParkTube"; //main에 있는 siteName
   res.locals.routes = routes; //routes.js 사용
-  res.locals.user = req.user || null;
+  res.locals.loggedUser = req.user || null;
   next();
 };
 
@@ -20,7 +20,7 @@ export const onlyPublic = (req, res, next) => {
 //로그인한 사용자가 가입화면(join)에 못 가게 하기 위해
 
 export const onlyPrivate = (req, res, next) => {
-  if ((req, user)) {
+  if (req.user) {
     next();
   } else {
     res.redirect(routes.home);

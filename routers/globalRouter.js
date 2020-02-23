@@ -9,7 +9,8 @@ import {
   postLogin,
   logout,
   githubLogin,
-  postGithubLogIn
+  postGithubLogIn,
+  getMe
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middleware";
 //현재 폴더의 바깥으로 지정해야 해서 .. 두개 붙임.
@@ -34,6 +35,8 @@ globalRouter.get(
   passport.authenticate("github", { failureRedirect: "/login" }),
   postGithubLogIn
 );
+
+globalRouter.get(routes.me, getMe);
 
 export default globalRouter;
 
