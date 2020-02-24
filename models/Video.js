@@ -26,7 +26,11 @@ const VideoSchema = new mongoose.Schema({
       // 좋아요를 저장하거나, 유저를 저장하거나 할땐 다른 ref를 사용하겠지
       //다른 방법도 있음. 노트 참고 make12 하단
     }
-  ]
+  ],
+  creator: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  }
 });
 
 const model = mongoose.model("Video", VideoSchema);

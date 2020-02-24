@@ -29,9 +29,7 @@ export const search = async (req, res) => {
   // res.render("search", { pageTitle: "Search", searchingBy:searchingBy });
 };
 
-export const getUpload = (req, res) =>
-  res.render("upload", { pageTitle: "Upload" });
-
+export const getUpload = (req, res) => res.render("upload", { pageTitle: "Upload" });
 export const postUpload = async (req, res) => {
   const {
     body: { file, title, description },
@@ -40,9 +38,11 @@ export const postUpload = async (req, res) => {
   const newVideo = await Video.create({
     fileUrl: path,
     title,
-    description
+    description,
+    creator: req.user.id
   });
-  console.log(newVideo);
+  req.user.videos.push(newVideo.id);
+  req.user.save();
   res.redirect(routes.videoDetail(newVideo.id));
   //res.render("upload", { pageTitle: "Upload" });
   // To do : 비디오 업로드 및 저장
@@ -53,7 +53,8 @@ export const videoDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate("creator");
+    console.log(video); //adding creator to video
     res.render("videoDetail", { pageTitle: video.title, video });
     //video:video 는 video 와 같다.
   } catch (error) {
