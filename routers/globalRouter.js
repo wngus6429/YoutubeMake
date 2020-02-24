@@ -10,9 +10,9 @@ import {
   logout,
   githubLogin,
   postGithubLogIn,
-  getMe,
-  facebookLogin,
-  postFacebookLogin
+  getMe
+  // facebookLogin,
+  // postFacebookLogin
 } from "../controllers/userController";
 import { onlyPublic, onlyPrivate } from "../middleware";
 //현재 폴더의 바깥으로 지정해야 해서 .. 두개 붙임.

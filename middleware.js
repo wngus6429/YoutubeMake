@@ -2,6 +2,7 @@ import multer from "multer";
 import routes from "./routes";
 
 const multerVideo = multer({ dest: "unploads/videos/" });
+const multerAvatar = multer({ dest: "uploads/avatars" });
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "ParkTube"; //main에 있는 siteName
@@ -30,6 +31,7 @@ export const onlyPrivate = (req, res, next) => {
 
 export const uploadVideo = multerVideo.single("videoFile");
 //single은 파일 한개만을 올릴수 있다는것임.
+export const uploadAvatar = multerAvatar.single("avatar");
 
 //Connect 미들웨어를 이용해서 isAuthenticated 메서드를 호출하여
 //로그인 판단 여부를 확인할 수 있습니다.
