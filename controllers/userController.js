@@ -11,7 +11,7 @@ export const postJoin = async (req, res, next) => {
   const {
     body: { name, email, password, password2 }
   } = req;
-  if (password != password2) {
+  if (password !== password2) {
     res.status(400); //html status code 라고 있음. 100 200 300 등등
     res.render("join", { pageTitle: "Join" });
   } else {
@@ -31,8 +31,7 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
-export const getLogin = (req, res) =>
-  res.render("login", { pageTitle: "Log In" });
+export const getLogin = (req, res) => res.render("login", { pageTitle: "Log In" });
 
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
