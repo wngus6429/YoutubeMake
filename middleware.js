@@ -1,6 +1,7 @@
 import multer from "multer";
 import routes from "./routes";
 
+//multer는 file을 업로드하고 URL을 반환하는 미들웨어이다.
 const multerVideo = multer({ dest: "uploads/videos/" });
 const multerAvatar = multer({ dest: "uploads/avatars" });
 

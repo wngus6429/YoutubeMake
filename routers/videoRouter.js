@@ -16,7 +16,8 @@ console.log(routes.editVideo);
 
 //upload
 videoRouter.get(routes.upload, onlyPrivate, getUpload);
-videoRouter.post(routes.upload, onlyPrivate, uploadVideo, postUpload); //가운데가 미들웨어
+videoRouter.post(routes.upload, onlyPrivate, uploadVideo, postUpload);
+//가운데가 미들웨어 npm multer , 미들웨어에서 file을 upload하고 url을 복사해서 db에 저장
 //video detail
 videoRouter.get(routes.videoDetail(), videoDetail);
 //edit video

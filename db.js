@@ -3,12 +3,15 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+//어디에 Database가 저장되어 있는지 알려줌.
 mongoose.connect(process.env.MONGO_URL, {
-  useNewUrlParser: true,
-  useFindAndModify: false
+  //내가 몽고DB를 사용할때 마다
+  useNewUrlParser: true, //이봐 이 configuration을 사용
+  useFindAndModify: false //이봐 이 configuration을 사용안함
+  //이 부분은 크게 신경안써도 됨
 });
 
-const db = mongoose.connection;
+const db = mongoose.connection; //MongoDb와의 연결을 db로 저장한다.
 
 const handleOpen = () => console.log("✅  Connected to DB");
 const handleError = error => console.log(`💀 Error on DB Connection:${error}`);

@@ -1,5 +1,5 @@
 import routes from "../routes";
-import Video from "../models/Video";
+import Video from "../models/Video"; //이걸로 모델 데이터를 불러옴
 
 export const home = async (req, res) => {
   try {
@@ -32,14 +32,15 @@ export const search = async (req, res) => {
 export const getUpload = (req, res) =>
   res.render("upload", { pageTitle: "Upload" });
 export const postUpload = async (req, res) => {
+  console.log(req);
   const {
     body: { file, title, description },
     file: { path }
   } = req;
   const newVideo = await Video.create({
     fileUrl: path,
-    title,
-    description,
+    title, //이거 title:title 줄인거
+    description, //이것도 마찬가지 description:description
     creator: req.user.id
   });
   req.user.videos.push(newVideo.id);
