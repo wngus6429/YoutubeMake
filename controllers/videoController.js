@@ -32,7 +32,6 @@ export const search = async (req, res) => {
 export const getUpload = (req, res) =>
   res.render("upload", { pageTitle: "Upload" });
 export const postUpload = async (req, res) => {
-  console.log(req);
   const {
     body: { file, title, description },
     file: { path }
@@ -43,6 +42,7 @@ export const postUpload = async (req, res) => {
     description, //이것도 마찬가지 description:description
     creator: req.user.id
   });
+  console.log(newVideo);
   req.user.videos.push(newVideo.id);
   req.user.save();
   res.redirect(routes.videoDetail(newVideo.id));
