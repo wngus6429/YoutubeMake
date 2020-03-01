@@ -71,9 +71,9 @@ export const getEditVideo = async (req, res) => {
   try {
     const video = await Video.findById(id);
     if (video.creator !== req.user.id) {
-      throw Error();
-    } else {
       res.render("editVideo", { pageTitle: `Edit ${video.title}`, video });
+    } else {
+      throw Error();
     }
   } catch (error) {
     res.redirect(routes.home);
@@ -86,7 +86,6 @@ export const postEditVideo = async (req, res) => {
   } = req;
   try {
     await Video.findOneAndUpdate({ _id: id }, { title, description }); //뒤에 부분이 수정하고 싶은곳
-    //console.log(video);
     res.redirect(routes.videoDetail(id));
   } catch (error) {
     res.redirect(routes.home);
