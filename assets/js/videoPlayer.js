@@ -2,10 +2,11 @@
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayButton");
-const volumnBtn = document.getElementById("jsVolumnBtn");
+const volumeBtn = document.getElementById("jsVolumnBtn");
 const fullScreenBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
+const volumeRange = document.getElementById("jsVolume");
 
 function handlePlayClick() {
   if (videoPlayer.paused) {
@@ -20,10 +21,12 @@ function handlePlayClick() {
 function handleVolumnClick() {
   if (videoPlayer.muted) {
     videoPlayer.muted = false;
-    volumnBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    volumeRange.value = videoPlayer.volume; //이걸 해야 음소거 풀었을떄 원래 자리로감
   } else {
+    volumeRange.value = 0; //이걸 해야 음소거 하면 볼륨 바가 0으로 감
     videoPlayer.muted = true;
-    volumnBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
+    volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
   }
 }
 
@@ -78,7 +81,7 @@ const formatDate = seconds => {
 
 function getCurrentTime() {
   //현재시간
-  currentTime.innerHTML = formatDate(videoPlayer.currentTime);
+  currentTime.innerHTML = formatDate(Math.floor(videoPlayer.currentTime));
 }
 
 function setTotalTime() {
@@ -88,11 +91,34 @@ function setTotalTime() {
   setInterval(getCurrentTime, 1000); //1초마다 실행 된드는거
 }
 
+function handleEnded() {
+  videoPlayer.currentTime = 0;
+  playBtn.innerHTML = '<i class="fab fa-gitlab"></i>';
+}
+
+function handleDrag(event) {
+  const {
+    target: { value }
+  } = event;
+  videoPlayer.volume = value;
+  if (value >= 0.6) {
+    //볼륨 크기 조절 아이콘
+    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+  } else if (value >= 0.2) {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-down"></i>';
+  } else {
+    volumeBtn.innerHTML = '<i class="fas fa-volume-off"></i>';
+  }
+}
+
 function init() {
+  videoPlayer.volume = 0.5; //기본 볼륨
   playBtn.addEventListener("click", handlePlayClick);
-  volumnBtn.addEventListener("click", handleVolumnClick);
+  volumeBtn.addEventListener("click", handleVolumnClick);
   fullScreenBtn.addEventListener("click", goFullScreen);
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
+  videoPlayer.addEventListener("ended", handleEnded);
+  volumeRange.addEventListener("input", handleDrag);
 }
 
 if (videoContainer) {
