@@ -12,6 +12,7 @@ import routes from "./routes"; //라우트 정보 내놔
 import userRouter from "./routers/userRouter"; //유저라우터 정보 내놔
 import videoRouter from "./routers/videoRouter"; //비디오라우터 정보 내놔
 import globalRouter from "./routers/globalRouter"; //글로벌 라우터 정보 내놔
+import apiRouter from "./routers/apiRouter";
 
 import "./passport";
 
@@ -44,6 +45,7 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);
+app.use(routes.api, apiRouter);
 
 export default app;
 

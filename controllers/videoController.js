@@ -110,6 +110,24 @@ export const deleteVideo = async (req, res) => {
   //비디오 삭제가 되던, 안되던 무조건 home으로 간다.
 };
 
+//API AJAX , Resigter Video View
+
+export const postRegisterView = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    video.views += 1;
+    video.save();
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
 // 여기가 MVC에서 C부분임
 //pageTitle 이건 말 그대로 페이지 타이틀임
 //redirect는 사용자를 어디 홈페이지로 보내는 역할
