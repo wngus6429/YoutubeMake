@@ -43,7 +43,6 @@ const getVideo = async () => {
     recordBtn.innerHTML = "Stop recording";
     streamObject = stream;
     startRecording();
-    //console.log(stream);
   } catch (error) {
     recordBtn.innerHTML = "😂 Cant record";
   } finally {
