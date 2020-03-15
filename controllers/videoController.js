@@ -1,5 +1,6 @@
 import routes from "../routes";
 import Video from "../models/Video"; //이걸로 모델 데이터를 불러옴
+import Comment from "../models/Comment";
 
 export const home = async (req, res) => {
   try {
@@ -55,7 +56,9 @@ export const videoDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const video = await Video.findById(id).populate("creator");
+    const video = await await Video.findById(id)
+      .populate("creator")
+      .populate("comments");
     //console.log(video); //adding creator to video
     res.render("videoDetail", { pageTitle: video.title, video });
     //video:video 는 video 와 같다.
@@ -110,6 +113,13 @@ export const deleteVideo = async (req, res) => {
   //비디오 삭제가 되던, 안되던 무조건 home으로 간다.
 };
 
+// 여기가 MVC에서 C부분임
+//pageTitle 이건 말 그대로 페이지 타이틀임
+//redirect는 사용자를 어디 홈페이지로 보내는 역할
+//res.render("home")은 home.pug를 렌더링한다.
+//getEditVideo는 템플릿을 랜더링 하는거임
+//get은 뭔가를 채워넣는 작업이고, post는 업데이트하고 redirect하는 작업임
+
 //API AJAX , Resigter Video View
 
 export const postRegisterView = async (req, res) => {
@@ -127,10 +137,25 @@ export const postRegisterView = async (req, res) => {
     res.end();
   }
 };
-
-// 여기가 MVC에서 C부분임
-//pageTitle 이건 말 그대로 페이지 타이틀임
-//redirect는 사용자를 어디 홈페이지로 보내는 역할
-//res.render("home")은 home.pug를 렌더링한다.
-//getEditVideo는 템플릿을 랜더링 하는거임
-//get은 뭔가를 채워넣는 작업이고, post는 업데이트하고 redirect하는 작업임
+// Add Comment
+export const postAddComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { comment },
+    user
+  } = req;
+  try {
+    const video = await Video.findById(id);
+    const newComment = await Comment.create({
+      text: comment,
+      creator: user.id
+    });
+    video.comments.push(newComment.id);
+    video.save();
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
