@@ -1,6 +1,6 @@
 import passport from "passport";
 import routes from "../routes";
-import User from "../models/User";
+import User from "../models/User"; //User안에 Schema가 담겨있음.
 import { renderSync } from "node-sass";
 
 export const getJoin = (req, res) => {
@@ -17,10 +17,12 @@ export const postJoin = async (req, res, next) => {
   } else {
     try {
       const user = await User({
+        //스키마 내용의 name, email 받아서 사용자를 생성
         name,
         email
       });
       await User.register(user, password);
+      //문서참고해서 register사용해서 등록, 즉 postJoin에서 생성과 등록 둘다 함.
       next();
     } catch (error) {
       console.log(error);
@@ -31,7 +33,8 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
-export const getLogin = (req, res) => res.render("login", { pageTitle: "Log In" });
+export const getLogin = (req, res) =>
+  res.render("login", { pageTitle: "Log In" });
 
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,

@@ -1,7 +1,7 @@
-import passport from "passport";
+import passport from "passport"; //Npm install passport passport-local
 import GithubStrategy from "passport-github";
 //import FacebookStrategy from "passport-facebook";
-import User from "./models/User";
+import User from "./models/User"; //모델 소환~~~ , strategy라는건 로그인 하는 방식임
 import {
   githubLoginCallback
   // facebookLoginCallback
@@ -9,6 +9,7 @@ import {
 import routes from "./routes";
 
 passport.use(User.createStrategy());
+//passport-local-mongoose가 제공하는 strategy 사용. username과 passport를 쓰는 strategy
 
 passport.use(
   new GithubStrategy(
