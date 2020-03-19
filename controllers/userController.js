@@ -3,6 +3,8 @@ import routes from "../routes";
 import User from "../models/User"; //User안에 Schema가 담겨있음.
 import { renderSync } from "node-sass";
 
+//스키마에서 User로 받았지만 DB가 users로 만듬.
+
 export const getJoin = (req, res) => {
   res.render("join", { pageTitle: "Join" });
 };
@@ -33,9 +35,9 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
-export const getLogin = (req, res) =>
-  res.render("login", { pageTitle: "Log In" });
+export const getLogin = (req, res) => res.render("login", { pageTitle: "Log In" });
 
+//passport.authenticate는 username(여기서는 email), password를 찾아보도록 설정됨
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home

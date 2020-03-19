@@ -21,7 +21,7 @@ const globalRouter = express.Router();
 
 globalRouter.get(routes.join, onlyPublic, getJoin); //아이디 만듬
 globalRouter.post(routes.join, onlyPublic, postJoin, postLogin); //아이디 만듬 정보 가림
-//postJoin에서 받은 정보를 가지고 postLogin으로 간다.
+//postJoin에서 가입을 하고 바로 로그인 시키는 과정 join에 next() 있음.
 
 globalRouter.get(routes.login, onlyPublic, getLogin); //로그인 함
 globalRouter.post(routes.login, onlyPublic, postLogin); //로그인 정보 가림

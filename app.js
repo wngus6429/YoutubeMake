@@ -31,9 +31,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev")); //컬러 들어감 ^.^
 app.use(
   session({
+    //아무거나 넣어도 동작. id 전송할때 암호화해서 못 알아보게 함
     secret: process.env.COOKIE_SECRET,
-    resave: true,
+    resave: true, //세션을 강제로 저장하는 기능
     saveUninitialized: false,
+    //초기화되지 않은(uninitialized) 세션을 저장소에 저장함.새로운 세션이지만 변경되지 않은 세션은 초기화되지 않습니다.
+    //로그인 session에 이용하려면, false를 선택하는것이 유용합니다.
     store: new CokieStore({ mongooseConnection: mongoose.connection })
   })
 );

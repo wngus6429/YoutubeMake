@@ -5,10 +5,12 @@ import routes from "./routes";
 const multerVideo = multer({ dest: "uploads/videos/" });
 const multerAvatar = multer({ dest: "uploads/avatars" });
 
+//여기서 세션, 유저정보를 어떤것을 클릭하던 정보 전달함.
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "ParkTube"; //main에 있는 siteName
   res.locals.routes = routes; //routes.js 사용
   res.locals.loggedUser = req.user || null;
+  //console.log(req.user);
   next();
 };
 
