@@ -14,6 +14,7 @@ export const localsMiddleware = (req, res, next) => {
   next();
 };
 
+//로그인한 사용자가 가입화면(join)에 못 가게 하기 위해
 export const onlyPublic = (req, res, next) => {
   if (req.user) {
     res.redirect(routes.home);
@@ -21,8 +22,8 @@ export const onlyPublic = (req, res, next) => {
     next();
   }
 };
-//로그인한 사용자가 가입화면(join)에 못 가게 하기 위해
 
+//사용자가 로그인한 상태라면 next를 해줌, 그렇지 않으면 home으로
 export const onlyPrivate = (req, res, next) => {
   if (req.user) {
     next();
@@ -30,7 +31,6 @@ export const onlyPrivate = (req, res, next) => {
     res.redirect(routes.home);
   }
 };
-//사용자가 로그인한 상태라면 next를 해줌, 그렇지 않으면 home으로
 
 export const uploadVideo = multerVideo.single("videoFile");
 //single은 파일 한개만을 올릴수 있다는것임.

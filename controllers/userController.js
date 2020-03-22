@@ -35,43 +35,15 @@ export const postJoin = async (req, res, next) => {
   }
 };
 
-export const getLogin = (req, res) => res.render("login", { pageTitle: "Log In" });
+export const getLogin = (req, res) =>
+  res.render("login", { pageTitle: "Log In" });
 
 //passport.authenticate는 username(여기서는 email), password를 찾아보도록 설정됨
+//여기 local은 우리가 설치해준strategy
 export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
   successRedirect: routes.home
 });
-
-export const githubLogin = passport.authenticate("github");
-
-export const githubLoginCallback = async (_, __, profile, cb) => {
-  const {
-    _json: { id, avatar_url: avatarUrl, name, email }
-  } = profile;
-  try {
-    const user = await User.findOne({ email });
-    if (user) {
-      user.githubId = id;
-      user.avatarUrl = avatarUrl;
-      user.save();
-      return cb(null, user);
-    }
-    const newUser = await User.create({
-      email,
-      name,
-      githubId: id,
-      avatarUrl
-    });
-    return cb(null, newUser);
-  } catch (error) {
-    return cb(error);
-  }
-};
-
-export const postGithubLogIn = (req, res) => {
-  res.redirect(routes.home);
-};
 
 export const logout = (req, res) => {
   req.logout();
@@ -80,6 +52,7 @@ export const logout = (req, res) => {
 
 export const getMe = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+  //바로 지금 로그인한 사용자로 바로 연결하기 위해 뒤에 붙임. req.user는 현재 로그인된 사용자.
 };
 
 export const userDetail = async (req, res) => {
@@ -91,6 +64,7 @@ export const userDetail = async (req, res) => {
     console.log(user);
     res.render("userDetail", { pageTitle: "User Detail", user });
   } catch (error) {
+    //users/무작위id로 들어갔을때 에러 뜨는거 방지하기 위해 try catch문 사용
     res.redirect(routes.home);
   }
 };
@@ -106,8 +80,11 @@ export const postEditProfile = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user.id, {
       name,
-      email,
+      email, //file이 있으면 file.path : 뒤 , 없으면 같은 avatarUrl
       avatarUrl: file ? file.path : req.user.avatarUrl
+      //우린 user.avatarUrl을 가지고 있음. 만약 새로운 avatarfile이 없다면
+      //유저가 파일을 추가하지 않으면 avatarUrl을 중복해서 쓰지 않음. 그래서 현재 있는걸 줌
+      //request객체 안에는 user가 있다는 사실을 기억해야함.
     });
     res.redirect(routes.me);
   } catch (error) {
@@ -132,6 +109,36 @@ export const postChangePassword = async (req, res) => {
     res.redirect(routes.me);
   } catch (error) {
     res.redirect(`/users/${routes.changePassword}`);
+  }
+};
+
+export const postGithubLogIn = (req, res) => {
+  res.redirect(routes.home);
+};
+
+export const githubLogin = passport.authenticate("github");
+
+export const githubLoginCallback = async (_, __, profile, cb) => {
+  const {
+    _json: { id, avatar_url: avatarUrl, name, email }
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.githubId = id;
+      user.avatarUrl = avatarUrl;
+      user.save();
+      return cb(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      githubId: id,
+      avatarUrl
+    });
+    return cb(null, newUser);
+  } catch (error) {
+    return cb(error);
   }
 };
 

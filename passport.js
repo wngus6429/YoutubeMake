@@ -21,9 +21,9 @@ passport.use(
     githubLoginCallback
   )
 );
-
+//어떤 field가 쿠키에 포함될것인지. 쿠키에는 오직 user.id만 담아서 보내도록해 라고 하는거임.
 passport.serializeUser(User.serializeUser());
-//쿠키에는 오직 user.id만 담아서 보내도록해 라고 하는거임.
+//쿠키의 정보를 어떻게 사용자로 전환하는가.
 passport.deserializeUser(User.deserializeUser());
 
 //serialize

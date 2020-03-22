@@ -24,6 +24,7 @@ const UserSchema = new mongoose.Schema({
 //passportLocalMongoose를 임포트 했으니 사용해야지?
 //뒷 부분은 어떤 field를 username으로 할 것인지 알려줘야함. 뭐든 되는데 email 사용
 UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });
+//여기안에 setPassword, changePassword 모든게 마련되어 있음.
 
 const model = mongoose.model("User", UserSchema); //UserSchema로 부터 받는 모델(데이터) 생성
 //"User"여기안에 데이터를 넣어두고 model 안에 각납

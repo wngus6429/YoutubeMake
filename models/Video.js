@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 //영상을 넣으면 DB가 무거워지기 때문에 text 데이터베이스로 활용함.
 
 //여기서는 내 Video들의 형태를 정의함
-//해야할것 하나는 model즉 document name이고 다른 하나느 schema(형태) 임
-//model은 실제 data임
+//해야할것 하나는 model즉 document name이고 다른 하나느 schema(형태) 임, model은 실제 data임
 //즉 파일은 fileUrl, title, description, views, createdAt, comment, creator를 가짐
 const VideoSchema = new mongoose.Schema({
   fileUrl: {

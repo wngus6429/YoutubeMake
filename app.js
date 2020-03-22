@@ -38,6 +38,7 @@ app.use(
     //초기화되지 않은(uninitialized) 세션을 저장소에 저장함.새로운 세션이지만 변경되지 않은 세션은 초기화되지 않습니다.
     //로그인 session에 이용하려면, false를 선택하는것이 유용합니다.
     store: new CokieStore({ mongooseConnection: mongoose.connection })
+    //이걸 함으로 인해 서버가 재시작 되어도 쿠키를 보존 할 수 있음. 그래서 유저는 여전히 로그인상태
   })
 );
 app.use(passport.initialize());

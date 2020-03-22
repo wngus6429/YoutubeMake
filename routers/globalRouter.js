@@ -18,13 +18,13 @@ import { onlyPublic, onlyPrivate } from "../middleware";
 //현재 폴더의 바깥으로 지정해야 해서 .. 두개 붙임.
 
 const globalRouter = express.Router();
-
-globalRouter.get(routes.join, onlyPublic, getJoin); //아이디 만듬
-globalRouter.post(routes.join, onlyPublic, postJoin, postLogin); //아이디 만듬 정보 가림
+//onlyPublic 은 로그인한 사용자가 join, login에 접근 못하게 하기 위해
+globalRouter.get(routes.join, onlyPublic, getJoin); //join 화면 만듬
+globalRouter.post(routes.join, onlyPublic, postJoin, postLogin); //join 처리
 //postJoin에서 가입을 하고 바로 로그인 시키는 과정 join에 next() 있음.
 
-globalRouter.get(routes.login, onlyPublic, getLogin); //로그인 함
-globalRouter.post(routes.login, onlyPublic, postLogin); //로그인 정보 가림
+globalRouter.get(routes.login, onlyPublic, getLogin); //로그인 화면 만듬
+globalRouter.post(routes.login, onlyPublic, postLogin); //로그인 처리
 
 globalRouter.get(routes.home, home); // routes.home링크로 home을 보냄.
 //home을 video컨트롤러에서 가져옴
