@@ -1,8 +1,8 @@
 //이곳에서는 비디오플레이어 아이콘과 연결해서 동작 만듬.
 const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
-const playBtn = document.getElementById("jsPlayButton");
-const volumeBtn = document.getElementById("jsVolumnBtn");
+const playBtn = document.getElementById("jsPlayButton"); // 플레이버튼제어
+const volumeBtn = document.getElementById("jsVolumnBtn"); // 볼륨버튼제어
 const fullScreenBtn = document.getElementById("jsFullScreen");
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
@@ -17,20 +17,23 @@ const registerView = () => {
 
 function handlePlayClick() {
   if (videoPlayer.paused) {
-    videoPlayer.play();
+    //버튼 클릭 할때는 화면 멈춘 상태였으니
+    videoPlayer.play(); //재생중인 화면, 재생중이기에 아래 아이콘으로
     playBtn.innerHTML = '<i class="far fa-pause-circle"></i>';
+    //안에 더블따옴이 있어서 싱글따옴으로 감쌈
   } else {
-    videoPlayer.pause();
+    videoPlayer.pause(); //일시정지 화면, 일리섲ㅇ지중이기에 아래 아이콘으로
     playBtn.innerHTML = '<i class="fab fa-gitlab"></i>';
   }
 }
 
 function handleVolumnClick() {
   if (videoPlayer.muted) {
-    videoPlayer.muted = false;
-    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>';
+    videoPlayer.muted = false; //소리나는 상태
+    volumeBtn.innerHTML = '<i class="fas fa-volume-up"></i>'; //소리 나고 있는 아이콘
     volumeRange.value = videoPlayer.volume; //이걸 해야 음소거 풀었을떄 원래 자리로감
   } else {
+    // 볼륨업 상태에서 버튼 누르고 이게 제일 먼저 작동
     volumeRange.value = 0; //이걸 해야 음소거 하면 볼륨 바가 0으로 감
     videoPlayer.muted = true;
     volumeBtn.innerHTML = '<i class="fas fa-volume-mute"></i>';
@@ -120,10 +123,11 @@ function handleDrag(event) {
 }
 
 function init() {
+  //다른 곳에서도 쓸수 있게 앞에 const 안 붙임.
   videoPlayer.volume = 0.5; //기본 볼륨
-  playBtn.addEventListener("click", handlePlayClick);
-  volumeBtn.addEventListener("click", handleVolumnClick);
-  fullScreenBtn.addEventListener("click", goFullScreen);
+  playBtn.addEventListener("click", handlePlayClick); //플레이버튼
+  volumeBtn.addEventListener("click", handleVolumnClick); //볼륨버튼
+  fullScreenBtn.addEventListener("click", goFullScreen); //풀스크린버튼
   videoPlayer.addEventListener("loadedmetadata", setTotalTime);
   videoPlayer.addEventListener("ended", handleEnded);
   volumeRange.addEventListener("input", handleDrag);
