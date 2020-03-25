@@ -3,7 +3,7 @@ const videoContainer = document.getElementById("jsVideoPlayer");
 const videoPlayer = document.querySelector("#jsVideoPlayer video");
 const playBtn = document.getElementById("jsPlayButton"); // 플레이버튼제어
 const volumeBtn = document.getElementById("jsVolumnBtn"); // 볼륨버튼제어
-const fullScreenBtn = document.getElementById("jsFullScreen");
+const fullScreenBtn = document.getElementById("jsFullScreen"); //풀스크린버튼
 const currentTime = document.getElementById("currentTime");
 const totalTime = document.getElementById("totalTime");
 const volumeRange = document.getElementById("jsVolume");
@@ -41,19 +41,19 @@ function handleVolumnClick() {
 }
 
 function goFullScreen() {
+  //버튼 누를시 일어나는 일
   if (videoContainer.requestFullscreen) {
-    videoContainer.requestFullscreen();
+    videoContainer.requestFullscreen(); //풀스크린인 가즈아
   } else if (videoContainer.mozRequestFullScreen) {
-    videoContainer.mozRequestFullScreen();
+    videoContainer.mozRequestFullScreen(); //파이어폭스
   } else if (videoContainer.webkitRequestFullscreen) {
-    videoContainer.webkitRequestFullscreen();
+    videoContainer.webkitRequestFullscreen(); //구글크롬
   } else if (videoContainer.msRequestFullscreen) {
-    videoContainer.msRequestFullscreen();
+    videoContainer.msRequestFullscreen(); //엣지
   }
-  //videoContainer.webkitRequestFullscreen(); //고유의 기능
-  fullScreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
-  fullScreenBtn.removeEventListener("click", goFullScreen);
-  fullScreenBtn.addEventListener("click", exitFullScreen);
+  fullScreenBtn.innerHTML = '<i class="fas fa-compress"></i>'; //풀스크린 했으니 작게하는 버튼도
+  fullScreenBtn.removeEventListener("click", goFullScreen); //다시 클릭한다고 또 크게 할 필요 없음
+  fullScreenBtn.addEventListener("click", exitFullScreen); // 버튼 누를시 풀스크린 해제
 }
 
 function exitFullScreen() {
@@ -61,13 +61,13 @@ function exitFullScreen() {
   fullScreenBtn.addEventListener("click", goFullScreen);
   //document.webkitExitFullscreen(); //고유의 기능
   if (document.exitFullscreen) {
-    document.exitFullscreen();
+    document.exitFullscreen(); //풀스크린해제
   } else if (document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
+    document.mozCancelFullScreen(); //파이어폭스
   } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
+    document.webkitExitFullscreen(); //크롬
   } else if (document.msExitFullscreen) {
-    document.msExitFullscreen();
+    document.msExitFullscreen(); //엣지
   }
 }
 
