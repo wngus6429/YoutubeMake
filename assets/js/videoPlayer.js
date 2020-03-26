@@ -43,6 +43,7 @@ function handleVolumnClick() {
 function goFullScreen() {
   //버튼 누를시 일어나는 일
   if (videoContainer.requestFullscreen) {
+    //기능 존재의체크임
     videoContainer.requestFullscreen(); //풀스크린인 가즈아
   } else if (videoContainer.mozRequestFullScreen) {
     videoContainer.mozRequestFullScreen(); //파이어폭스
