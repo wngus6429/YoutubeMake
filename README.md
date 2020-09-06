@@ -4,7 +4,7 @@
 
 Cloning Youtube with vanillaJS and NodeJS, MongoDB
 
-(Scss, pug, passport, babel, webpack, eslint, router, mvc)
+(Scss, pug, passport, babel, webpack, eslint, router, mvc, nodemon etc..)
 
 ## Pages:
 
@@ -19,3 +19,6 @@ Cloning Youtube with vanillaJS and NodeJS, MongoDB
 - [x] Upload
 - [x] Video Detail
 - [x] Edit Video
+- [x] Delete Video
+- [x] Video Recording
+- [x] Video Recording Download
