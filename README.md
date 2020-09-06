@@ -1,7 +1,21 @@
+<!-- @format -->
+
 # YoutubeMake
 
-Cloning Youtube with vanillaJS and NodeJS
+Cloning Youtube with vanillaJS and NodeJS, MongoDB
+
+(Scss, pug, passport, babel, webpack, eslint, router, mvc)
 
 ## Pages:
 
--[ ] Home -[X] Join -[X] Login -[X] Search -[ ] User Detail -[ ] Edit Profile -[ ] Change Password -[ ] Upload -[ ] Video Detail -[ ] Edit Video -[ ]
+- [x] Home
+- [x] Join
+- [x] GitHub Login
+- [x] Login
+- [x] Search
+- [x] User Detail
+- [x] Edit Profile
+- [x] Change Password
+- [x] Upload
+- [x] Video Detail
+- [x] Edit Video
